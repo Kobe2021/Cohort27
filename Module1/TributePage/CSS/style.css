@@ -1,0 +1,32 @@
+h1{
+  background-color: rgb(164, 164, 164);
+  font-family: 'Courier New', Courier, monospace;
+}
+body{
+  background-color: beige;
+  text-align: center;
+}
+ul{
+  list-style: inside;
+}
+nav {
+    float: left;
+    width: 12%;
+    height: 295px; 
+    background: rgb(164, 164, 164);
+    padding: 20px;
+  }
+img{
+  width: 50%
+}    
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+.container{
+  background-color: #eee;
+}
+a{
+  background: rgb(164, 164, 164);
+ 
+}
