@@ -12,8 +12,9 @@ ul{
 nav {
     float: left;
     width: 12%;
-    height: 295px; 
-    background: rgb(164, 164, 164);
+    height: 300px; 
+    background-color: rgb(164, 164, 164);
+    display: block;
     padding: 20px;
   }
 img{
@@ -28,5 +29,5 @@ nav ul {
 }
 a{
   background: rgb(164, 164, 164);
- 
+  padding: 2px;
 }
