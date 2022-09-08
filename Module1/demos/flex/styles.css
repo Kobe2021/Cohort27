@@ -1,0 +1,11 @@
+.parent{
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* flex-direction: column; */
+}
+.child{
+    /* width: 100px; */
+    font-size: 32px;
+}

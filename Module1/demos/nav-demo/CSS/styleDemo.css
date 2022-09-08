@@ -1,0 +1,67 @@
+header{
+    background-color: lightblue;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    position: sticky;
+    top: 0;
+    /* right: 5px; */
+}
+nav{
+    /* background-color: rgb(191, 191, 191); */
+    width: 150px;
+    position: relative;
+}
+ul{
+    display: none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+nav:hover ul{
+    display: block;
+}
+section{
+    /* margin-top: 80px; */
+}
+.parent{
+    border: solid red;
+    display: flex;
+    align-items: center;
+    height: 900px;
+    flex-wrap: wrap;
+    margin: 0%;
+}
+.child{
+    border: solid white;
+    width: 25%;
+    height: 300px;
+    margin: 0%;
+    padding: 0%;
+}
+#one{
+    background-color: red;
+}
+#two{
+    background-color: blue
+}
+#three{
+    background-color: green
+}
+#four{
+    background-color: yellow;
+}
+#five{
+    background-color: orange;
+}
+#six{
+    background-color: black
+}
+#seven{
+    background-color: brown;
+}
+#eight{
+    background-color: aqua;
+}
+#nine{
+    background-color: blueviolet;
+}
+#ten{
+    background-color: beige;
+}

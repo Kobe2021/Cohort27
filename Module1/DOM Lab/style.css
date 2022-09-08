@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* CSS Custom Properties */
+  :root {
+    --main-bg: #4a4e4d;
+    --top-menu-bg: #0e9aa7;
+    --sub-menu-bg: #3da4ab;
+  }
+  
+  body {
+    font-family: Tahoma, Geneva, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 3rem auto;
+    color: white;
+  }
+  
+  .flex-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flex-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  nav a {
+    line-height: 3rem;
+    padding: 0 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+  }
+  
+  #top-menu a:hover {
+    background-color: var(--sub-menu-bg);
+  }
