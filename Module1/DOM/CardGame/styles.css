@@ -1,0 +1,32 @@
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      background-color: grey;
+      color: red;
+      text-align: center;
+      width: 500px;
+      padding: 10px;
+    }
+    .buttons h3 {
+      background-color: black;
+      padding: 5px;
+    }
+    .inner {
+      background-color: black;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      padding: 5px;
+      margin: 2px;
+      border-radius: 25px;
+      background-color: red;
+      color: #fff;
+    }
