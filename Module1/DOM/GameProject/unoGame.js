@@ -165,12 +165,16 @@ const CARDS = [
     document.querySelector("#deck-of-cards-cpu").appendChild(player2Img);
     console.log(cpuValue);
     let result = document.getElementById("result")
+
     if (playerValue > cpuValue) {
       result.innerText = "Player 1 wins";
+      document.body.style.backgroundColor = 'red';
     } else if (cpuValue > playerValue) {
       result.innerText = "Player 2 wins";
+      document.body.style.backgroundColor = 'blue';
     } else {
-      alert("it's a tie");
+      result.innerText = "it's a tie";
+      document.body.style.backgroundColor = 'grey';
     }
   }
   function reset() {
