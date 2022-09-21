@@ -1,20 +1,12 @@
-/* #deck-of-cards-player {
-    width: 20%;
-    height: 20%;
-}
-#deck-of-cards-player {
-    width: 20%;
-    height: 20%;
-} */
-
 #heading {
     text-align: center;
-}
-.bigDiv {
+  }
+  .bigDiv {
+    text-align: center;
     display: flex;
     justify-content: center;
-}
-.container {
+  }
+  .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,7 +17,7 @@
     background-color: grey;
     color: red;
     text-align: center;
-    width: 200px;
+    width: 75%;
     padding: 0px;
   }
   .buttons h3 {
@@ -45,4 +37,9 @@
     border-radius: 25px;
     background-color: red;
     color: #fff;
+  }
+  #mainButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
   }
