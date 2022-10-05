@@ -62,6 +62,20 @@ app.get('/fruits/:indexOfFruitsArray', (req, res) => {
 app.get('/vegetables', (req, res) => {
     res.render('vegetables/IndexVeggies', {vegetables: vegetables})
 })
+
+app.post('/vegetables', (req, res) => {
+    if(req.body.readyToEat === 'on'){
+        req.body.readyToEat = true
+    } else {
+        req.body.readyToEat = false
+    }
+    vegetables.push(req.body)
+    res.redirect('/vegetables')
+})
+// Render a form
+app.get('/vegetables/new', (req, res) => {
+    res.render('vegetables/New')
+})
 //Show route: show a single vegetable
 app.get('/vegetables/:indexOfVeggies', (req, res) => {
     const {indexOfVeggies} = req.params

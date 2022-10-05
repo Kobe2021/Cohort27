@@ -3,7 +3,7 @@ const vegetables = require('../../models/vegetables');
 
 class Show extends React.Component{
     render(){
-        //Receive data from fruits.js
+        //Receive data from vegetables.js
         const vegetable = this.props.vegetable
         const presentDate = this.props.date
         return(
