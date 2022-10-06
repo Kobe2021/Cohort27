@@ -6,8 +6,8 @@ class Index extends React.Component{
     render(){
         const {fruits} = this.props
         return(
-            <div>
-                <h1>All Fruits</h1>
+            <div style={styles.container}>
+                <h1 style={styles.header}>All Fruits</h1>
                 <a href='/fruits/new'>Create New Fruit</a>
 
 
@@ -15,7 +15,7 @@ class Index extends React.Component{
                     {
                         fruits.map((fruit, idx) => (
                             <li>
-                                <a href={`/fruits/${idx}`}>{fruit.name}</a> is {fruit.color}{" "} <br />
+                                <a href={`/fruits/${fruit._id}`}>{fruit.name}</a> is {fruit.color}{" "} <br />
                                 {fruit.readyToEat ? `It is ready to eat` : `It is not ready to eat`}
                                 
                             </li>
@@ -24,6 +24,19 @@ class Index extends React.Component{
                 </ul>
             </div>
         );
+    }
+}
+
+const styles = {
+    container: {
+        backgroundColor: 'royalblue',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    header: {
+        fontSize: '32px',
+        color: '#fff',
     }
 }
 

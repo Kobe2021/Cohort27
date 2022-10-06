@@ -2,6 +2,11 @@ const express = require('express')
 const morgan = require('morgan')
 const fruits = require('./models/fruits')
 const vegetables = require('./models/vegetables')
+require('dotenv').config()
+console.log(process.env.MONGO_URI);
+const mongoose = require('mongoose');
+const Fruit = require('./models/FruitModel')
+const { request } = require('express')
 
 const app = express()
 const PORT = 3000
@@ -28,7 +33,12 @@ app.get('/', (req, res) => {
 // Index Route: Get all fruits
 app.get('/fruits', (req, res) => {
     // res.send(fruits)
-    res.render('fruits/Index', {fruits: fruits})
+    Fruit.find({}, (error, fruitsFromDB) => {
+        if(error){
+            console.log(error);
+        }
+        res.render('fruits/Index', { fruits: fruitsFromDB });
+    })
 });
 
 app.post('/fruits', (req, res) => {
@@ -37,8 +47,17 @@ app.post('/fruits', (req, res) => {
     } else {
         req.body.readyToEat = false
     }
-    fruits.push(req.body)
-    res.redirect('/fruits')
+    // fruits.push(req.body)
+
+
+    // Using the model to create a new resource on the database
+    Fruit.create(req.body, (error, createdFruit) => {
+        if(error){
+            console.log(error);
+        }
+        console.log(createdFruit)
+        res.redirect('/fruits') // Redirect the user to fruits
+    })
 })
 
 // Render a form
@@ -47,15 +66,20 @@ app.get('/fruits/new', (req, res) => {
 })
 
 // Show Route: Show a single fruit
-app.get('/fruits/:indexOfFruitsArray', (req, res) => {
-    const {indexOfFruitsArray} = req.params
+app.get('/fruits/:id', (req, res) => {
+    const { id } = req.params
     // res.send(fruits[indexOfFruitsArray])
-    res.render('fruits/Show', {
-        fruit: fruits[indexOfFruitsArray],
-        date: new Date().getFullYear()
+
+    Fruit.findById(id, (error, foundFruit) => {
+        if(error){
+            console.log(error);
+        }
+        res.render('fruits/Show', {
+            fruit: foundFruit,
+            date: new Date().getFullYear(),
+        });
     })
 })
-
 
 
 //Vegetables Route with an index of veggies
@@ -85,7 +109,11 @@ app.get('/vegetables/:indexOfVeggies', (req, res) => {
     })
 })
 
-
 app.listen(PORT, () => {
     console.log(`listening on port: ${PORT}`);
+});
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open', ()=> {
+    console.log('connected to mongo');
 });
