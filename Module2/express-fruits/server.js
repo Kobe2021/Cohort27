@@ -5,8 +5,9 @@ const vegetables = require('./models/vegetables')
 require('dotenv').config()
 console.log(process.env.MONGO_URI);
 const mongoose = require('mongoose');
+const methodOverride = require('method-override')
 const Fruit = require('./models/FruitModel')
-const { request } = require('express')
+// const { request } = require('express')
 
 const app = express()
 const PORT = 3000
@@ -15,6 +16,7 @@ const PORT = 3000
 app.use(morgan('dev'))
 // we need this middleware to read the data from post requests
 app.use(express.urlencoded({extended:false}))
+app.use(methodOverride('_method'))
 // Create your own middleware
 app.use((req, res, next) => {
     console.log('I run for all routes');
@@ -41,14 +43,14 @@ app.get('/fruits', (req, res) => {
     })
 });
 
+// CRUD - Create, Read, Update, Delete
+// CREATE - post
 app.post('/fruits', (req, res) => {
     if(req.body.readyToEat === 'on'){
         req.body.readyToEat = true
     } else {
         req.body.readyToEat = false
     }
-    // fruits.push(req.body)
-
 
     // Using the model to create a new resource on the database
     Fruit.create(req.body, (error, createdFruit) => {
@@ -65,6 +67,7 @@ app.get('/fruits/new', (req, res) => {
     res.render('fruits/New')
 })
 
+// READ - get
 // Show Route: Show a single fruit
 app.get('/fruits/:id', (req, res) => {
     const { id } = req.params
@@ -81,6 +84,51 @@ app.get('/fruits/:id', (req, res) => {
     })
 })
 
+// DELETE - delete
+app.delete('/fruits/:id', (req, res) => {
+    const {id} = req.params;
+
+    //Delete fruit from db
+    Fruit.findByIdAndRemove(id, (error, data) => {
+        console.log('Hereeee', data);
+        if(error){
+            console.log(error)
+            res.status(403).send('Bad request')
+        }
+        res.redirect('/fruits')
+    })
+})
+
+app.get('/fruits/:id/edit', (req, res) => {
+    const {id} = req.params
+    // find fruit in the database using the id
+    Fruit.findById(id, (error, foundFruit) => {
+        if(error){
+            console.log(error);
+            res.status(403).send('Id not found')
+        }
+        //render the view and pass the data from the fruit
+        res.render('fruits/Edit', {fruit: foundFruit})
+    })
+
+})
+
+// UPDATE - put
+app.put('/fruits/:id', (req, res) => {
+    const {id} = req.params
+    if(req.body.readyToEat === 'on'){
+        req.body.readyToEat = true;
+    } else {
+        req.body.readyToEat = false;
+    }
+    Fruit.findByIdAndUpdate(id, req.body, (error, updatedFruit) => {
+        if(error){
+            console.log(error);
+            res.status(403).send('Cannot Update')
+        }
+        res.redirect(`/fruits/${id}`)
+    })
+})
 
 //Vegetables Route with an index of veggies
 app.get('/vegetables', (req, res) => {
