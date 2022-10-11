@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.6.5"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "poke-express",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
