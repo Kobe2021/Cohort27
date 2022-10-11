@@ -7,11 +7,11 @@ class Index extends React.Component {
             <div>React Component!
                 <h1>All Pokemon</h1>
                 <h2>{pokemon.name}</h2>
-                <img src={pokemon.image} />
                 
                 <ul>
                     {pokemon.map((pokemon, _id) => (
                         <li>
+                            <img src={pokemon.img} />
                             <a href={`/pokemon/${_id}`}>Pokemon Name</a>
                         </li>
                     ))}
