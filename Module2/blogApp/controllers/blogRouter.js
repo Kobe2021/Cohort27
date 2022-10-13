@@ -13,6 +13,30 @@ router.get('/', async (req, res) => {
         res.status(403).send('Cannot create')
     }
 })
+//CREATE a New Blog
+router.post('/', async (req, res) => {
+    try{
+        if(req.body.sponsored === "on") {
+            req.body.sponsored = true;
+        } else {
+            req.body.sponsored = false;
+        }
+        const newBlog = await BlogModel.create(req.body)
+        res.redirect('/blog')
+    } catch(error){
+        console.log(error);
+        res.status(403).send('Cannot create')
+    }
+})
+//CREATE a New Blog
+router.get('/new', async (req, res) => {
+    try{
+        res.render('Blogs/New')
+    } catch(error){
+        console.log(error);
+        res.status(403).send('Cannot create')
+    }
+})
 // GET Blog by ID
 router.get('/:id', async (req, res) => {
     try{
@@ -23,22 +47,12 @@ router.get('/:id', async (req, res) => {
         res.status(403).send('Cannot create')
     }
 })
-//CREATE a New Blog
-router.post('/', async (req, res) => {
-    try{
-        const newBlog = await BlogModel.create(req.body)
-        res.send(newBlog)
-    } catch(error){
-        console.log(error);
-        res.status(403).send('Cannot create')
-    }
-})
 // PUT: Update by ID
 router.put('/:id', async (req, res) => {
     try{
-        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id, req.body, {'returnDocument': "after"})
-        res.send(updatedBlog)
-
+        const { id } = req.params
+        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id)
+        res.redirect('/blog')
     } catch(error){
         console.log(error);
         res.status(403).send('Cannot put')
@@ -50,10 +64,10 @@ router.delete('/:id', async (req, res) => {
     try{
         const deletedBlog = await BlogModel.findByIdAndRemove(req.params.id)
         console.log(deletedBlog);
-        res.send('Blog Deleted')
+        res.redirect('/blog')
     }catch(error){
         console.log(error);
-        res.status(403).send('Cannot create')
+        res.status(403).send('Cannot DELETE')
     }
     
 })
