@@ -4,12 +4,11 @@ const NavBar = require('../components/Navbar')
 class Index extends React.Component {
   render() {
     const { blogs } = this.props;
-    return (
-      <div>
-        <head>
-          <liink rel="stylesheet" href="/CSS/app.css" />
-        </head>
-
+    return(<div>
+      <head>
+        <link rel="stylesheet" href="/CSS/app.css" />
+      </head>
+        
         <NavBar />
         <h1>All Blogs</h1>
         <a href="/blog/new">Create New Blog</a>
@@ -19,6 +18,8 @@ class Index extends React.Component {
             <li>
               <a href={`/blog/${blog._id}`}>{blog.title}</a> by: {blog.author}{" "}
               <br />
+              <p>{blog.body}</p>
+              <br />
               <form action={`/Blogs/${blog._id}?_method=DELETE`} method="post">
                 <input type="submit" value="Delete" />
               </form>
@@ -27,7 +28,7 @@ class Index extends React.Component {
           ))}
         </ul>
       </div>
-    );
+    )
   }
 }
 

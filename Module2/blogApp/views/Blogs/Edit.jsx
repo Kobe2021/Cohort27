@@ -14,7 +14,7 @@ class Edit extends React.Component {
 
                 <form action={`/blog/${blog._id}?_method=put`} method='post'>
                     Title: <input type="text" name="title" /><br />
-                    Body: <input type="text" name="body"/><br />
+                    Body: <input type="text" name="body" /><br />
                     Author: <input type="text" name="author" /><br />
                     <input type="submit" value="Update blog" />
                 </form>
