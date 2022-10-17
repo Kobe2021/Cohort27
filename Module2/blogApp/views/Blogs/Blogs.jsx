@@ -15,8 +15,11 @@ class Blogs extends React.Component {
                     {blogs.map((blog) => (
                         <div style={styles.wrapper} className="card">
                             <a href={`/blog/${blog._id}`}>{" "}</a>
-                                
+                            <div>
+                                <a href={`/blog/${blog._id}/edit`}>Edit</a>
+                            </div>    
                         </div>
+                        
                     ))}
                 </section>
             </section>

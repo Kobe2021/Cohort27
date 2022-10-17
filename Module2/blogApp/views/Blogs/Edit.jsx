@@ -13,10 +13,14 @@ class Edit extends React.Component {
                 <NavBar />
 
                 <form action={`/blog/${blog._id}?_method=put`} method='post'>
-                    Title: <input type="text" name="title" /><br />
-                    Body: <input type="text" name="body" /><br />
+                    Title: <input type="text" name="title" value={blog.title} /><br />
+                    Body: <input type="text" name="body" value={blog.body} /><br />
                     Author: <input type="text" name="author" /><br />
                     <input type="submit" value="Update blog" />
+                    
+                </form>
+                <form action={`/blog/${blog._id}?_method=delete`} method='post'>
+                    <input type='submit' value='Delete Blog' />
                 </form>
             </div>
         )

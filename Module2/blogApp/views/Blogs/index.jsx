@@ -20,10 +20,10 @@ class Index extends React.Component {
               <br />
               <p>{blog.body}</p>
               <br />
-              <form action={`/Blogs/${blog._id}?_method=DELETE`} method="post">
+              <form action={`/blog/${blog._id}?_method=DELETE`} method="post">
                 <input type="submit" value="Delete" />
               </form>
-              <a href={`/Blogs/${blog._id}/edit`}>Edit this Blog</a>
+              <a href={`/blog/${blog._id}/edit`}>Edit this Blog</a>
             </li>
           ))}
         </ul>

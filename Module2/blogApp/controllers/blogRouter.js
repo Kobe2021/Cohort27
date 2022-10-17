@@ -47,11 +47,26 @@ router.get('/:id', async (req, res) => {
         res.status(403).send('Cannot create')
     }
 })
+// Render Edit form
+router.get('/:id/edit', async (req, res) => {
+    try{
+        const blog = await BlogModel.findById(req.params.id)
+        res.render('Blogs/Edit', {blog: blog})
+
+    } catch(error){
+        console.log(error);
+        res.status(403).send('Cannot get')
+    }
+})
 // PUT: Update by ID
 router.put('/:id', async (req, res) => {
     try{
-        const { id } = req.params
-        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id)
+        if(req.body.sponsored === "on") {
+            req.body.sponsored = true;
+        } else {
+            req.body.sponsored = false;
+        }
+        const updatedBlog = await BlogModel.findByIdAndUpdate(req.params.id, req.body, { returnDocument: "after" });
         res.redirect('/blog')
     } catch(error){
         console.log(error);
@@ -62,9 +77,9 @@ router.put('/:id', async (req, res) => {
 //DELETE
 router.delete('/:id', async (req, res) => {
     try{
-        const deletedBlog = await BlogModel.findByIdAndRemove(req.params.id)
+        const deletedBlog = await BlogModel.findByIdAndRemove(req.params.id);
         console.log(deletedBlog);
-        res.redirect('/blog')
+        res.redirect('/blog');
     }catch(error){
         console.log(error);
         res.status(403).send('Cannot DELETE')

@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 require('dotenv').config()
 const path = require('path')
+const methodOverride = require('method-override')
+
 
 
 const app = express()
@@ -12,6 +14,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
+app.use(methodOverride('_method'))
+
 
 app.set("view engine", "jsx");
 app.engine("jsx", require("express-react-views").createEngine())
