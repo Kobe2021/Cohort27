@@ -3,17 +3,27 @@ const BlogModel = require('../models/BlogSchema')
 
 const router = express.Router()
 
+//add privacy to the routes
+//Middleware function
+router.use((req, res, next) => {
+    if(req.session.loggedIn){
+        next()
+    } else {
+        res.redirect('/user/signin')
+    }
+})
+
 //GET All Blogs
 router.get('/', async (req, res) => {
     try{
         const blogs = await BlogModel.find({})
-        res.render('Blogs/index', {blogs: blogs})
+        res.render('Blogs/index', {blogs: blogs, loggedInUser: req.session})
     } catch(error){
         console.log(error);
         res.status(403).send('Cannot create')
     }
 })
-//CREATE a New Blog
+//POST: CREATE a New Blog
 router.post('/', async (req, res) => {
     try{
         if(req.body.sponsored === "on") {
@@ -21,6 +31,8 @@ router.post('/', async (req, res) => {
         } else {
             req.body.sponsored = false;
         }
+        //set author to loggedIn user
+        req.body.author = req.session.username
         const newBlog = await BlogModel.create(req.body)
         res.redirect('/blog')
     } catch(error){

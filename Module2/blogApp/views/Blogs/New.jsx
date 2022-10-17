@@ -13,7 +13,7 @@ class New extends React.Component{
                 <form action="/blog" method="post">
                     Title: <input type="text" name="title" /><br />
                     Body: <input type="text" name="body" style={{height: 300, width: 500}} /><br />
-                    Author: <input type="text" name="author" /><br />
+                    {/* Author: <input type="text" name="author" /><br /> */}
                     <input type="submit" value="add new blog" />
                 </form>
             

@@ -65,6 +65,16 @@ router.post('/signin', async (req, res) => {
     }
 })
 
+// signout User and destroy session
+router.get('/signout', (req, res) => {
+    try{
+        req.session.destroy()
+        res.redirect('/')
+    }catch(error){
+        console.log(error);
+    }
+})
+
 // Find user by ID
 router.get('/:id', async (req, res) => {
     try{

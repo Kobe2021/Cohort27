@@ -3,7 +3,7 @@ const NavBar = require('../components/Navbar')
 
 class Index extends React.Component {
   render() {
-    const { blogs } = this.props;
+    const { blogs, loggedInUser } = this.props;
     return(<div>
       <head>
         <link rel="stylesheet" href="/CSS/app.css" />
@@ -24,6 +24,11 @@ class Index extends React.Component {
                 <input type="submit" value="Delete" />
               </form>
               <a href={`/blog/${blog._id}/edit`}>Edit this Blog</a>
+              {blog.author === loggedInUser ? (
+                <div>
+                  <a href={`/blog/${blog._id}/edit`}>Edit</a>
+                </div>
+              ) : null};
             </li>
           ))}
         </ul>
