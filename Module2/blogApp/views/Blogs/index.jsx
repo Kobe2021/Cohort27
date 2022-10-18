@@ -13,9 +13,9 @@ class Index extends React.Component {
         <h1>All Blogs</h1>
         <a href="/blog/new">Create New Blog</a>
 
-        <ul>
+        <ul className="cardContainer">
           {blogs.map((blog, idx) => (
-            <li>
+            <li className="card">
               <a href={`/blog/${blog._id}`}>{blog.title}</a> by: {blog.author}{" "}
               <br />
               <p>{blog.body}</p>
