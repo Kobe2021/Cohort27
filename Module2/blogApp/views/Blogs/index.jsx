@@ -24,6 +24,7 @@ class Index extends React.Component {
                 <input type="submit" value="Delete" />
               </form>
               <a href={`/blog/${blog._id}/edit`}>Edit this Blog</a>
+              <p> Created: {blog.created_at.getDate()}</p>
               {blog.author === loggedInUser ? (
                 <div>
                   <a href={`/blog/${blog._id}/edit`}>Edit</a>
