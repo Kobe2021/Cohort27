@@ -99,7 +99,7 @@ input, select, textarea {
 	}
 
 	body {
-		background-color: #1e252d;
+		background-color: #000000;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -4564,7 +4564,7 @@ input, select, textarea {
 		-webkit-overflow-scrolling: touch;
 		background: #ffffff;
 		box-shadow: none;
-		color: #212931;
+		color: #000000;
 		height: 100%;
 		max-width: 80%;
 		overflow-y: auto;
